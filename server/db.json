@@ -1,0 +1,58 @@
+{
+  "notes": [
+    {
+      "userId": 1,
+      "id": 1,
+      "text": "Выучить HTML",
+      "isImportant": false
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "text": "Выучить CSS",
+      "isImportant": false
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "text": "Выучить CSS фреймворк",
+      "isImportant": false
+    },
+    {
+      "userId": 1,
+      "id": 4,
+      "text": "Выучить JavaScript",
+      "isImportant": true
+    },
+    {
+      "userId": 1,
+      "id": 5,
+      "text": "Выучить React",
+      "isImportant": false
+    },
+    {
+      "userId": 1,
+      "id": 6,
+      "text": "Выучить Redux, Redux-Toolkit",
+      "isImportant": true
+    },
+    {
+      "userId": 1,
+      "id": 7,
+      "text": "Выучить TypeScript",
+      "isImportant": false
+    },
+    {
+      "userId": 1,
+      "id": 8,
+      "text": "Разобрать связку TypeScript и React",
+      "isImportant": true
+    },
+    {
+      "userId": 1,
+      "id": 9,
+      "text": "Выучить сторонние библиотеки: axios, react-router",
+      "isImportant": false
+    }
+  ]
+}
