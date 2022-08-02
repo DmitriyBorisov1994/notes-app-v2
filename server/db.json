@@ -10,19 +10,19 @@
       "userId": 1,
       "id": 2,
       "text": "Выучить CSS",
-      "isImportant": false
+      "isImportant": true
     },
     {
       "userId": 1,
       "id": 3,
       "text": "Выучить CSS фреймворк",
-      "isImportant": false
+      "isImportant": true
     },
     {
       "userId": 1,
       "id": 4,
       "text": "Выучить JavaScript",
-      "isImportant": true
+      "isImportant": false
     },
     {
       "userId": 1,

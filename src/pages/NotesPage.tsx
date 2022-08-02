@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { addNewNote, fetchNotes } from '../store/notesSlice'
 import { useAppDispatch, useAppSelector } from './../hook'
 import AddTodo from '../components/AddNote'
-import TodoList from '../components/TodoList'
 import { Spin } from 'antd';
+import NotesList from '../components/NotesList'
 
 const NotesPage: React.FC = () => {
 
@@ -34,7 +34,7 @@ const NotesPage: React.FC = () => {
          <AddTodo onAddNote={onAddNote} text={text} onSetText={onSetText} />
          {loading === true && <Spin />}
          {error && <div>Ошибка! {error}</div>}
-         <TodoList />
+         <NotesList />
       </>
    )
 }

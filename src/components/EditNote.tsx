@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Col, Row, Card, Typography, Tooltip } from 'antd';
 import { CheckCircleOutlined, ArrowLeftOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import AnimatedSvgButton from './AnimatedSvgButton';
 
 const { Paragraph } = Typography;
 
@@ -35,9 +36,24 @@ const EditNote: React.FC<EditNoteProps> = ({ note, onUpdate }) => {
                   key={n.id}
                   className='card'
                   actions={[
-                     <Tooltip title='Назад'><ArrowLeftOutlined key="alert" style={{ color: '#ffc107', fontSize: '1.5rem' }} onClick={() => { navigate(-1) }} /></Tooltip>,
-                     <Tooltip title='Отменить ввод'><CloseCircleOutlined style={{ color: '#F44336', fontSize: '1.5rem' }} onClick={() => setEditableStr(n.text)} /></Tooltip>,
-                     <Tooltip title='Сохранить'><CheckCircleOutlined style={{ color: '#4CAF50', fontSize: '1.5rem' }} key="delete" onClick={() => { onUpdate(n.id, editableStr) }} /></Tooltip>,
+                     <AnimatedSvgButton
+                        Icon={ArrowLeftOutlined}
+                        styles={{ color: '#ffc107' }}
+                        onClick={() => { navigate(-1) }}
+                        tooltipTitle='Назад'
+                     />,
+                     <AnimatedSvgButton
+                        Icon={CloseCircleOutlined}
+                        styles={{ color: '#f44336' }}
+                        onClick={() => setEditableStr(n.text)}
+                        tooltipTitle='Отменить ввод'
+                     />,
+                     <AnimatedSvgButton
+                        Icon={CheckCircleOutlined}
+                        styles={{ color: '#4caf50' }}
+                        onClick={() => { onUpdate(n.id, editableStr) }}
+                        tooltipTitle='Сохранить'
+                     />,
                   ]}
                >
                   <Paragraph
