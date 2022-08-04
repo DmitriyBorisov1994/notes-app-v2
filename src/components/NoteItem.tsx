@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../hook'
 import { removeNote, toggleStatus } from '../store/notesSlice'
-import { Card, Tooltip } from 'antd';
+import { Card } from 'antd';
 import { DeleteOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useSpring, animated, easings } from 'react-spring'

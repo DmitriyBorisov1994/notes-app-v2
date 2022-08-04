@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction  } from '@reduxjs/toolkit'
 import { getNotes, getNote, deleteNote, toggleNote, addNote } from '../api/notesApi'
 
-type Note = {
+export type Note = {
    id: string;
    text: string;
    isImportant: boolean;

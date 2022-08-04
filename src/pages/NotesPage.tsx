@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { addNewNote, fetchNotes } from '../store/notesSlice'
 import { useAppDispatch, useAppSelector } from './../hook'
-import AddTodo from '../components/AddNote'
 import { Spin } from 'antd';
 import NotesList from '../components/NotesList'
+import { Note } from '../store/notesSlice';
+import Controls from '../components/Controls';
 
 const NotesPage: React.FC = () => {
 
+   const notes = useAppSelector(state => state.notes.list)
+
    const [text, setText] = useState('')
+   const [filteredNotes, setFilteredNotes] = useState<Note[]>([])
 
    const { loading, error } = useAppSelector(state => state.notes)
 
    const dispatch = useAppDispatch()
+
+   const handleSearch = (search: string) => {
+      let data = notes;
+      if (search) {
+         data = data.filter((note) => note.text.toLowerCase().includes(search.toLowerCase()))
+      };
+      setFilteredNotes(data)
+   }
 
 
    const onAddNote = () => {
@@ -29,12 +41,20 @@ const NotesPage: React.FC = () => {
       dispatch(fetchNotes())
    }, [])
 
+   useEffect(() => {
+      setFilteredNotes(notes)
+   }, [notes])
+
    return (
       <>
-         <AddTodo onAddNote={onAddNote} text={text} onSetText={onSetText} />
-         {loading === true && <Spin />}
-         {error && <div>Ошибка! {error}</div>}
-         <NotesList />
+         {loading === true
+            ? <Spin />
+            : <>
+               <Controls handleSearch={handleSearch} onAddNote={onAddNote} text={text} onSetText={onSetText} />
+               <NotesList notes={filteredNotes} />
+               {error && <div>Ошибка! {error}</div>}
+            </>
+         }
       </>
    )
 }

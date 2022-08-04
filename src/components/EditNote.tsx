@@ -51,7 +51,10 @@ const EditNote: React.FC<EditNoteProps> = ({ note, onUpdate }) => {
                      <AnimatedSvgButton
                         Icon={CheckCircleOutlined}
                         styles={{ color: '#4caf50' }}
-                        onClick={() => { onUpdate(n.id, editableStr) }}
+                        onClick={() => {
+                           onUpdate(n.id, editableStr)
+                           navigate(-1)
+                        }}
                         tooltipTitle='Сохранить'
                      />,
                   ]}

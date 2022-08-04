@@ -22,7 +22,7 @@
       "userId": 1,
       "id": 4,
       "text": "Выучить JavaScript",
-      "isImportant": false
+      "isImportant": true
     },
     {
       "userId": 1,
@@ -52,7 +52,7 @@
       "userId": 1,
       "id": 9,
       "text": "Выучить сторонние библиотеки: axios, react-router",
-      "isImportant": false
+      "isImportant": true
     }
   ]
 }

@@ -1,10 +1,12 @@
 import NoteItem from './NoteItem'
-import { useAppSelector } from '../hook'
 import { Col, Row } from 'antd';
+import { Note } from '../store/notesSlice';
 
-const NotesList: React.FC = () => {
+type NoteListProps = {
+   notes: Note[],
+}
 
-   const notes = useAppSelector(state => state.notes.list)
+const NotesList: React.FC<NoteListProps> = ({ notes }) => {
 
    return (
       <Row gutter={[8, 8]}>

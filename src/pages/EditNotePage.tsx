@@ -24,11 +24,14 @@ const EditTodo: React.FC = () => {
 
    return (
       <>
-         {loading === true && <Spin />}
-         {error && <div>Ошибка: {error}</div>}
-         <EditNote onUpdate={updateNoteText} note={note} />
+         {loading === true
+            ? <Spin />
+            : <>
+               {error && <div>Ошибка: {error}</div>}
+               <EditNote onUpdate={updateNoteText} note={note} />
+            </>
+         }
       </>
-
    )
 }
 
