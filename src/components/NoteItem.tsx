@@ -23,11 +23,11 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, text, isImportant }) => {
    const [flip, set] = useState(false)
 
    const importantStyles = useSpring({
-      to: { background: 'linear-gradient(to top, white 80%, #ef5350 )', transform: 'scale(0.95)' },
+      to: { background: 'linear-gradient(to top, white 80%, #ef5350 )', transform: 'scale(0.97)' },
       from: { background: 'linear-gradient(to top, white 100%, #ffcdd2 )', transform: 'scale(1)' },
       reset: true,
       reverse: flip,
-      delay: 200,
+      delay: 300,
       config: {
          duration: 1000,
          easing: easings.easeInOutSine,

@@ -7,7 +7,7 @@ export type Note = {
    isImportant: boolean;
 }
 
-type NotesState = {
+export type NotesState = {
    list: Note[];
    loading: boolean;
    error: string | null;

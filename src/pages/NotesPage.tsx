@@ -5,10 +5,13 @@ import { Spin } from 'antd';
 import NotesList from '../components/NotesList'
 import { Note } from '../store/notesSlice';
 import Controls from '../components/Controls';
+import Filter from '../components/Filter';
+import { selectNotesByFilter } from '../store/selectors';
+
 
 const NotesPage: React.FC = () => {
 
-   const notes = useAppSelector(state => state.notes.list)
+   const notes = useAppSelector(selectNotesByFilter)
 
    const [text, setText] = useState('')
    const [filteredNotes, setFilteredNotes] = useState<Note[]>([])
@@ -51,6 +54,7 @@ const NotesPage: React.FC = () => {
             ? <Spin />
             : <>
                <Controls handleSearch={handleSearch} onAddNote={onAddNote} text={text} onSetText={onSetText} />
+               <Filter />
                <NotesList notes={filteredNotes} />
                {error && <div>Ошибка! {error}</div>}
             </>
