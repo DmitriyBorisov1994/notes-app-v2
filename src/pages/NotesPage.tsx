@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { addNewNote, fetchNotes } from '../store/notesSlice'
-import { useAppDispatch, useAppSelector } from './../hook'
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { Spin } from 'antd';
 import NotesList from '../components/NotesList'
 import { Note } from '../store/notesSlice';
 import Controls from '../components/Controls';
 import Filter from '../components/Filter';
 import { selectNotesByFilter } from '../store/selectors';
-
+import { useAuth } from 'hooks/useAuth';
+import { Navigate } from 'react-router-dom';
 
 const NotesPage: React.FC = () => {
+
+   const { isAuth, email, id } = useAuth()
+   console.log('isAuth:' + isAuth)
 
    const notes = useAppSelector(selectNotesByFilter)
 
@@ -50,16 +54,22 @@ const NotesPage: React.FC = () => {
 
    return (
       <>
-         {loading === true
-            ? <Spin />
-            : <>
-               <Controls handleSearch={handleSearch} onAddNote={onAddNote} text={text} onSetText={onSetText} />
-               <Filter />
-               <NotesList notes={filteredNotes} />
-               {error && <div>Ошибка! {error}</div>}
+         {isAuth
+            ? <>
+               {loading === true
+                  ? <Spin />
+                  : <>
+                     <Controls handleSearch={handleSearch} onAddNote={onAddNote} text={text} onSetText={onSetText} />
+                     <Filter />
+                     <NotesList notes={filteredNotes} />
+                     {error && <div>Ошибка! {error}</div>}
+                  </>
+               }
             </>
+            : <Navigate to='/login' />
          }
       </>
+
    )
 }
 

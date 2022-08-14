@@ -3,6 +3,8 @@ import AppHeader from './components/AppHeader'
 import { Routes, Route } from 'react-router-dom';
 import NotesPage from './pages/NotesPage'
 import EditNotePage from './pages/EditNotePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
 
@@ -13,6 +15,14 @@ function App() {
         <Routes>
           <Route path='/' element={<NotesPage />} />
           <Route path='/:noteID' element={<EditNotePage />} />
+          <Route
+            path="/login"
+            element={<LoginPage />}
+          />
+          <Route
+            path="/register"
+            element={<RegisterPage />}
+          />
         </Routes>
       </Content>
     </Layout>

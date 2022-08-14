@@ -1,4 +1,4 @@
-import { useAppDispatch } from '../hook'
+import { useAppDispatch } from '../hooks/hook'
 import { removeNote, toggleStatus } from '../store/notesSlice'
 import { Card } from 'antd';
 import { DeleteOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons';

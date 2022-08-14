@@ -10,8 +10,8 @@ const Filter: React.FC = () => {
    const dispatch = useDispatch();
 
    return (
-      <Row style={{ display: 'flex', justifyContent: 'center' }}>
-         <Col xs={2}>
+      <Row justify='center'>
+         <Col xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
             <Segmented
                style={{ backgroundColor: '#CFD8DC' }}
                options={[

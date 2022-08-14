@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../hook'
+import { useAppDispatch, useAppSelector } from '../hooks/hook'
 import { fetchNote, updateNote } from '../store/notesSlice'
 import { useParams } from "react-router-dom";
 import EditNote from '../components/EditNote';

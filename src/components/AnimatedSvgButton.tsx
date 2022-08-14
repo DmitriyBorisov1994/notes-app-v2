@@ -6,7 +6,7 @@ interface AnimatedSvgButtonProps {
    Icon: any,
    styles: object,
    onClick?: () => void,
-   tooltipTitle: string
+   tooltipTitle?: string
 }
 
 const AnimatedSvgButton: React.FC<AnimatedSvgButtonProps> = ({ Icon, styles, onClick, tooltipTitle }) => {

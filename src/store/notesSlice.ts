@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction, AnyAction  } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit'
 import { getNotes, getNote, deleteNote, toggleNote, addNote } from '../api/notesApi'
 
 export type Note = {
@@ -42,14 +42,14 @@ export const fetchNote = createAsyncThunk<Note[], string, { rejectValue: string 
    }
 )
 
-export const removeNote= createAsyncThunk<string, string, { rejectValue: string }>(
+export const removeNote = createAsyncThunk<string, string, { rejectValue: string }>(
    'notes/removeNote',
    async function (id, { rejectWithValue }) {
-         const response = await deleteNote(id)
-         if (response.status !== 200) {
-            return rejectWithValue('can\'t delete note. server error')
-         }
-         return id
+      const response = await deleteNote(id)
+      if (response.status !== 200) {
+         return rejectWithValue('can\'t delete note. server error')
+      }
+      return id
 
    }
 )
@@ -72,9 +72,9 @@ export const toggleStatus = createAsyncThunk<Note, string, { rejectValue: string
 
 )
 
-export const updateNote = createAsyncThunk<Note, {id:string, text:string}, { rejectValue: string, state: { notes: NotesState } }>(
+export const updateNote = createAsyncThunk<Note, { id: string, text: string }, { rejectValue: string, state: { notes: NotesState } }>(
    'notes/updateNote',
-   async function ({id, text}, { rejectWithValue, getState }) {
+   async function ({ id, text }, { rejectWithValue, getState }) {
 
       const note = getState().notes.list.find(n => n.id === id)
 
@@ -94,7 +94,7 @@ export const addNewNote = createAsyncThunk<Note, string, { rejectValue: string }
    'notes/addNewNote',
    async function (text, { rejectWithValue }) {
 
-      const newNote:Note = {
+      const newNote: Note = {
          id: `${Date.now()}`,
          text: text,
          isImportant: false,
@@ -155,8 +155,8 @@ const notesSlice = createSlice({
    }
 })
 
-export default notesSlice.reducer 
+export default notesSlice.reducer
 
 function isError(action: AnyAction) {
    return action.type.endsWith('rejected');
- }
+}
