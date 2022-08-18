@@ -16,7 +16,7 @@ const AppHeader: React.FC = () => {
     <Header className='bg-primary-dark header'>
       <Row justify='space-between'>
         <Col xs={6}><h1 className='text-light'>Notes</h1></Col>
-        <Col xs={18}>
+        {!!email && <Col xs={18}>
           <div style={{ display: 'flex', justifyContent: 'right', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ color: 'white', marginRight: '1rem', fontSize: '.8rem' }}>{email}</span>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -24,7 +24,7 @@ const AppHeader: React.FC = () => {
               <span style={{ color: 'white', fontSize: '.7rem', lineHeight: '1rem' }}>Выйти</span>
             </div>
           </div>
-        </Col>
+        </Col>}
       </Row>
     </Header>
   )

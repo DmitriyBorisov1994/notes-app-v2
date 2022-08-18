@@ -4,23 +4,28 @@ import { fetchNote, updateNote } from '../store/notesSlice'
 import { useParams } from "react-router-dom";
 import EditNote from '../components/EditNote';
 import { Spin } from 'antd';
+import { useAuth } from 'hooks/useAuth';
 
 const EditTodo: React.FC = () => {
 
-   const { noteID } = useParams() as any
-
+   const { noteId } = useParams()
+   const { userId } = useAuth()
    const dispatch = useAppDispatch()
 
-   const updateNoteText = (id: string, text: string) => {
-      dispatch(updateNote({ id, text }))
+   const updateNoteText = (userId: string, noteId: string, text: string) => {
+      dispatch(updateNote({ userId, noteId, text }))
    }
 
    useEffect(() => {
-      dispatch(fetchNote(noteID))
-   }, [noteID])
+      console.log('use effect fetch note')
+      console.log(!!userId && !!noteId)
+      console.log('userId' + userId + 'noteId' + noteId)
+      if (!!userId && !!noteId) dispatch(fetchNote({ userId, noteId }))
+   }, [noteId])
 
    const { loading, error } = useAppSelector(state => state.notes)
    const note = useAppSelector(state => state.notes.list)
+   console.log(note)
 
    return (
       <>
@@ -28,7 +33,7 @@ const EditTodo: React.FC = () => {
             ? <Spin />
             : <>
                {error && <div>Ошибка: {error}</div>}
-               <EditNote onUpdate={updateNoteText} note={note} />
+               <EditNote userId={userId} onUpdate={updateNoteText} note={note} />
             </>
          }
       </>

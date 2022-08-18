@@ -3,21 +3,16 @@ import { Col, Row, Card, Typography, Tooltip } from 'antd';
 import { CheckCircleOutlined, ArrowLeftOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import AnimatedSvgButton from './AnimatedSvgButton';
-
+import { Note } from './../store/notesSlice'
 const { Paragraph } = Typography;
-
-type Note = {
-   id: string;
-   text: string;
-   isImportant: boolean;
-}
 
 interface EditNoteProps {
    note: Note[],
-   onUpdate: (id: string, text: string) => void
+   userId: string | null,
+   onUpdate: (userId: string, noteId: string, text: string) => void
 }
 
-const EditNote: React.FC<EditNoteProps> = ({ note, onUpdate }) => {
+const EditNote: React.FC<EditNoteProps> = ({ userId, note, onUpdate }) => {
 
    const [editableStr, setEditableStr] = useState('');
 
@@ -31,9 +26,9 @@ const EditNote: React.FC<EditNoteProps> = ({ note, onUpdate }) => {
    return (
       <Row justify='center'>
          {note.map(n => (
-            <Col key={n.id} xs={24} sm={12}>
+            <Col key={n.noteId} xs={24} sm={12}>
                <Card
-                  key={n.id}
+                  key={n.noteId}
                   className='card'
                   actions={[
                      <AnimatedSvgButton
@@ -52,7 +47,7 @@ const EditNote: React.FC<EditNoteProps> = ({ note, onUpdate }) => {
                         Icon={CheckCircleOutlined}
                         styles={{ color: '#4caf50' }}
                         onClick={() => {
-                           onUpdate(n.id, editableStr)
+                           if (userId) onUpdate(userId, n.noteId, editableStr)
                            navigate(-1)
                         }}
                         tooltipTitle='Сохранить'

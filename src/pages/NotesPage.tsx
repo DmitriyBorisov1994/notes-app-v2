@@ -12,8 +12,7 @@ import { Navigate } from 'react-router-dom';
 
 const NotesPage: React.FC = () => {
 
-   const { isAuth, email, id } = useAuth()
-   console.log('isAuth:' + isAuth)
+   const { isAuth, userId } = useAuth()
 
    const notes = useAppSelector(selectNotesByFilter)
 
@@ -34,8 +33,8 @@ const NotesPage: React.FC = () => {
 
 
    const onAddNote = () => {
-      if (text.trim().length) {
-         dispatch(addNewNote(text))
+      if (text.trim().length && userId) {
+         dispatch(addNewNote({ userId, text }))
       }
       setText('')
    }
@@ -45,7 +44,7 @@ const NotesPage: React.FC = () => {
    }
 
    useEffect(() => {
-      dispatch(fetchNotes())
+      if (!!userId) dispatch(fetchNotes(userId))
    }, [])
 
    useEffect(() => {

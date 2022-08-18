@@ -4,7 +4,7 @@ import { login, signup } from 'api/usersApi'
 export type User = {
    email: string | null,
    token: string | null,
-   id: string | null
+   userId: string | null
 }
 
 export type UserState = {
@@ -17,7 +17,7 @@ const initialState: UserState = {
    user: {
       email: null,
       token: null,
-      id: null
+      userId: null
    },
    loading: false,
    error: null
@@ -26,16 +26,14 @@ const initialState: UserState = {
 export const userLogin = createAsyncThunk<User, { email: string, password: string }, { rejectValue: string }>(
    'user/userLogin',
    async function ({ email, password }, { rejectWithValue }) {
-      console.log('thunk')
       const { user } = await login(email, password)
-      console.log(user)
       if (!user) {
          return rejectWithValue('Server Error')
       }
       return {
          email: user.email,
          token: user.refreshToken,
-         id: user.uid
+         userId: user.uid
       }
    }
 )
@@ -50,7 +48,7 @@ export const userSignUp = createAsyncThunk<User, { email: string, password: stri
       return {
          email: user.email,
          token: user.refreshToken,
-         id: user.uid
+         userId: user.uid
       }
    }
 )
@@ -62,7 +60,7 @@ const userSlice = createSlice({
       removeUser(state) {
          state.user.email = null;
          state.user.token = null;
-         state.user.id = null;
+         state.user.userId = null;
       }
    },
    extraReducers: (builder) => {
@@ -74,11 +72,7 @@ const userSlice = createSlice({
          .addCase(userLogin.fulfilled, (state, action) => {
             state.user.email = action.payload.email;
             state.user.token = action.payload.token;
-            state.user.id = action.payload.id;
-            console.log(action.payload)
-            console.log(state.user.email)
-            console.log(state.user.token)
-            console.log(state.user.id)
+            state.user.userId = action.payload.userId;
             state.loading = false;
          })
          .addCase(userSignUp.pending, (state, action) => {

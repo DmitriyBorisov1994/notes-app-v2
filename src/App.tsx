@@ -14,7 +14,7 @@ function App() {
       <Content className='bg-primary p-layout content'>
         <Routes>
           <Route path='/' element={<NotesPage />} />
-          <Route path='/:noteID' element={<EditNotePage />} />
+          <Route path='/:noteId' element={<EditNotePage />} />
           <Route
             path="/login"
             element={<LoginPage />}

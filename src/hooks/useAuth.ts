@@ -1,12 +1,11 @@
 import { useAppSelector } from './hook'
 
 export function useAuth() {
-   const { email, token, id } = useAppSelector(state => state.user.user)
-   console.log(email, token, id)
+   const { email, token, userId } = useAppSelector(state => state.user.user)
    return {
       isAuth: !!email,
       email,
       token,
-      id,
+      userId,
    }
 }

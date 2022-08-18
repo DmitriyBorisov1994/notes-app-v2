@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
-console.log(process.env)
 const firebaseConfig = {
    apiKey: "AIzaSyAbnJqnqtyvWrvfLvmC5ckkUbd6zsq7lPs",
    authDomain: "auth-example-dborisov.firebaseapp.com",

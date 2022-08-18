@@ -6,18 +6,21 @@ import { useNavigate } from "react-router-dom";
 import { useSpring, animated, easings } from 'react-spring'
 import { useState } from 'react';
 import AnimatedSvgButton from './AnimatedSvgButton';
+import { useAuth } from 'hooks/useAuth';
 
 interface NoteItemProps {
-   id: string,
+   noteId: string,
    text: string,
    isImportant: boolean,
 }
 
-const NoteItem: React.FC<NoteItemProps> = ({ id, text, isImportant }) => {
+const NoteItem: React.FC<NoteItemProps> = ({ noteId, text, isImportant }) => {
+
+   const { userId } = useAuth()
 
    const dispatch = useAppDispatch()
-   const onRemoveTodo = (id: string) => dispatch(removeNote(id))
-   const onToggleTodo = (id: string) => dispatch(toggleStatus(id))
+   const onRemoveTodo = (userId: string, noteId: string) => dispatch(removeNote({ userId, noteId }))
+   const onToggleTodo = (userId: string, noteId: string) => dispatch(toggleStatus({ userId, noteId }))
    let navigate = useNavigate();
 
    const [flip, set] = useState(false)
@@ -43,24 +46,28 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, text, isImportant }) => {
          style={isImportant ? importantStyles : {}}
          className='card'
          hoverable={true}
-         key={id}
+         key={noteId}
          actions={[
             <AnimatedSvgButton
                Icon={ExclamationCircleOutlined}
                styles={{ color: isImportant ? '#f44336' : '#ffc107' }}
-               onClick={() => { onToggleTodo(id) }}
+               onClick={() => {
+                  if (!!userId && !!noteId) onToggleTodo(userId, noteId)
+               }}
                tooltipTitle='Пометить'
             />,
             <AnimatedSvgButton
                Icon={EditOutlined}
                styles={{ color: '#ffc107' }}
-               onClick={() => { navigate(`/${id}`) }}
+               onClick={() => { navigate(`/${noteId}`) }}
                tooltipTitle='Открыть'
             />,
             <AnimatedSvgButton
                Icon={DeleteOutlined}
                styles={{ color: '#ffc107' }}
-               onClick={() => { onRemoveTodo(id) }}
+               onClick={() => {
+                  if (!!userId && !!noteId) onRemoveTodo(userId, noteId)
+               }}
                tooltipTitle='Удалить'
             />
          ]}

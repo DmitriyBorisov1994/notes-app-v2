@@ -4,10 +4,11 @@ import { userLogin } from './../store/userSlice'
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/hook';
 import { useAuth } from 'hooks/useAuth';
+import MyForm from './Form';
 
 const Login: React.FC = () => {
 
-   const { isAuth, email, id } = useAuth()
+   const { isAuth, email, userId } = useAuth()
 
    const dispatch = useAppDispatch()
 
@@ -17,7 +18,7 @@ const Login: React.FC = () => {
 
    return (
       <>
-         {isAuth ? <Navigate to='/' /> : < Form title='Login' handleClick={handleLogin} />}
+         {isAuth ? <Navigate to='/' /> : <MyForm title='Вход' handleClick={handleLogin} />/*< Form title='Login' handleClick={handleLogin} />*/}
       </>
    )
 }
