@@ -61,7 +61,7 @@ const NotesPage: React.FC = () => {
                      <Controls handleSearch={handleSearch} onAddNote={onAddNote} text={text} onSetText={onSetText} />
                      <Filter />
                      <NotesList notes={filteredNotes} />
-                     {error && <div>Ошибка! {error}</div>}
+                     {error && <div className='text-light error-block'>{error}</div>}
                   </>
                }
             </>

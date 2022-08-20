@@ -15,13 +15,13 @@ const AppHeader: React.FC = () => {
   return (
     <Header className='bg-primary-dark header'>
       <Row justify='space-between'>
-        <Col xs={6}><h1 className='text-light'>Notes</h1></Col>
+        <Col xs={6}><h1 className='text-light'>Заметки</h1></Col>
         {!!email && <Col xs={18}>
           <div style={{ display: 'flex', justifyContent: 'right', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ color: 'white', marginRight: '1rem', fontSize: '.8rem' }}>{email}</span>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <AnimatedSvgButton Icon={LogoutOutlined} styles={{ color: 'white', fontSize: '1.4rem' }} onClick={() => { dispatch(removeUser()) }} />
-              <span style={{ color: 'white', fontSize: '.7rem', lineHeight: '1rem' }}>Выйти</span>
+            <div className='header-logout'>
+              <AnimatedSvgButton Icon={LogoutOutlined} styles={{ fontSize: '1.4rem' }} onClick={() => { dispatch(removeUser()) }} />
+              <span style={{ fontSize: '.7rem', lineHeight: '1rem' }}>Выйти</span>
             </div>
           </div>
         </Col>}

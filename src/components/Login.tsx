@@ -18,7 +18,7 @@ const Login: React.FC = () => {
 
    return (
       <>
-         {isAuth ? <Navigate to='/' /> : <MyForm title='Вход' handleClick={handleLogin} />/*< Form title='Login' handleClick={handleLogin} />*/}
+         {isAuth ? <Navigate to='/' /> : <MyForm title='Вход' handleClick={handleLogin} />}
       </>
    )
 }

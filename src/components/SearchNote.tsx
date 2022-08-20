@@ -22,7 +22,7 @@ const SearchNote: React.FC<SearchNoteProps> = ({ handleSearch }) => {
             placeholder='Найти заметку'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            suffix={<SearchOutlined style={{ color: '#FFC107' }} />}
+            suffix={<SearchOutlined style={{ color: '#757575' }} />}
             allowClear={true}
          />
       </div>

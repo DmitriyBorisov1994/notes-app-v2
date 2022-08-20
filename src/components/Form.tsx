@@ -36,6 +36,7 @@ const MyForm: React.FC<FormProps> = ({ title, handleClick }) => {
       <Form
          size='large'
          onFinish={(values: any) => {
+            console.log(values)
             const { email, password } = values
             handleClick(email, password)
          }}
@@ -66,11 +67,11 @@ const MyForm: React.FC<FormProps> = ({ title, handleClick }) => {
                   required: true,
                   message: "Пожалуйста, введите пароль!",
                },
-               /*{
+               {
                   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/,
                   message:
                      "Пароль должен содержать покрайней мере одну строчную букву, одну заглавную букву, одну цифру и один из символов: !@#$%. От 8ми до 24х символов.",
-               },*/
+               },
             ]}
          >
             <Input.Password placeholder="Введите пароль" />

@@ -41,7 +41,8 @@ export const userLogin = createAsyncThunk<User, { email: string, password: strin
 export const userSignUp = createAsyncThunk<User, { email: string, password: string }, { rejectValue: string }>(
    'user/userSignUp',
    async function ({ email, password }, { rejectWithValue }) {
-      const { user } = await signup(email, password)
+      const user = await signup(email, password)
+         .then((userCredential) => userCredential.user)
       if (!user) {
          return rejectWithValue('Server Error')
       }
@@ -80,7 +81,9 @@ const userSlice = createSlice({
             state.error = null;
          })
          .addCase(userSignUp.fulfilled, (state, action) => {
-            state.user = action.payload;
+            state.user.email = action.payload.email;
+            state.user.token = action.payload.token;
+            state.user.userId = action.payload.userId;
             state.loading = false;
          })
          .addMatcher(isError, (state, action: PayloadAction<string>) => {

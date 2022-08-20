@@ -24,10 +24,12 @@ export const fetchNotes = createAsyncThunk<Note[], string, { rejectValue: string
    'notes/fetchNotes',
    async function (userId, { rejectWithValue }) {
       try {
-         const response = await getNotes(userId)
-         if (!response) return []
+         const response = await getNotes(userId) as any
          return response as Note[]
       } catch (err) {
+         if (err instanceof TypeError) {
+            if (err.message === 'Cannot convert undefined or null to object') return rejectWithValue('У вас пока нет заметок!')
+         }
          return rejectWithValue('Server Error:' + err)
       }
    }
